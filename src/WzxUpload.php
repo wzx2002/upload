@@ -4,6 +4,7 @@ namespace Wzx2002\Upload;
 
 use ReflectionClass;
 use ReflectionException;
+use Wzx2002\Upload\Exceptions\UploadException;
 
 class  WzxUpload
 {
@@ -70,10 +71,15 @@ class  WzxUpload
      * @param string $bucket
      * @param string $filePath 文件路径
      * @return string
+     * @throws UploadException
      */
     public function upload(string $file, string $bucket = '', string $filePath = ''): string
     {
-        $this->method->setAccessible(true);
-        return $this->method->invoke($this->uploadType, $file, $bucket, $filePath);
+        try {
+            $this->method->setAccessible(true);
+            return $this->method->invoke($this->uploadType, $file, $bucket, $filePath);
+        } catch (\Exception $e) {
+            throw new UploadException("上传异常");
+        }
     }
 }
