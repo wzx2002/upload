@@ -3,6 +3,7 @@
 namespace Wzx2002\Upload\Impls;
 
 use OSS\Core\OssException;
+use Wzx2002\Upload\Exceptions\UploadException;
 use Wzx2002\Upload\Utils\OssUtil;
 
 class OssUploadImpl
@@ -40,12 +41,15 @@ class OssUploadImpl
      * @param string $bucket
      * @param string $filePath 文件路径
      * @return null
-     * @throws OssException
      */
     private function upload(string $file, string $bucket, string $filePath)
     {
         $instance = OssUtil::getInstance();
         $instance->setConfig($this->config);
-        return $instance->getOssClient()->uploadFile($bucket, $file, $filePath)['oss-request-url'];
+        try {
+            return $instance->getOssClient()->uploadFile($bucket, $file, $filePath)['oss-request-url'];
+        } catch (OssException $e) {
+            throw new UploadException;
+        }
     }
 }
