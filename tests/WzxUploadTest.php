@@ -15,8 +15,10 @@ class WzxUploadTest extends TestCase
             'endpoint' => ''
         ];
 
-        $file = WzxUpload::getInstance()->setUploadType(OssUploadImpl::getInstance())
-            ->setConfig($config)->upload('www.php', 'wzx2002', 'D:\phpstudy_pro\WWW\test\upload\src\WzxUpload.php');
+        $file = WzxUpload::getInstance()
+            ->setUploadType(OssUploadImpl::getInstance())
+            ->setConfig($config)
+            ->upload('www.php', 'wzx2002', 'D:\phpstudy_pro\WWW\test\upload\src\WzxUpload.php');
 
         $this->assertIsString($file);
     }
