@@ -37,16 +37,17 @@ class  WzxUpload
     }
 
     /**
-     * 上传类型
+     * 上传设置类型和方法
      * @param $uploadType
+     * @param $method string 调用方法
      * @return $this
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
-    public function setUploadType($uploadType): WzxUpload
+    public function setUploadType($uploadType, string $method = 'upload'): WzxUpload
     {
         $this->uploadType = $uploadType;
         $this->reflectionClass = new ReflectionClass($uploadType);
-        $this->method = $this->reflectionClass->getMethod('upload');
+        $this->method = $this->reflectionClass->getMethod($method);
 
         return $this;
     }
