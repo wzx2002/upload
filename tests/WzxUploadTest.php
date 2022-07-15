@@ -6,9 +6,6 @@ use Wzx2002\Upload\WzxUpload;
 
 class WzxUploadTest extends TestCase
 {
-    /**
-     * @throws ReflectionException
-     */
     public function testOssUpload()
     {
         $config = [
