@@ -12,9 +12,7 @@ class  WzxUpload
 
     private $method = null;
 
-    private $uploadType = null;
-
-    private ReflectionClass $reflectionClass;
+    private $uploadInstance = null;
 
     private function __clone()
     {
@@ -38,31 +36,23 @@ class  WzxUpload
 
     /**
      * 上传设置类型和方法
-     * @param $uploadType
-     * @param $method string 调用方法
+     * @param $uploadInstance
      * @return $this
-     * @throws ReflectionException
      */
-    public function setUploadType($uploadType, string $method = 'upload'): WzxUpload
+    public function setUploadInstance($uploadInstance): WzxUpload
     {
-        $this->uploadType = $uploadType;
-        $this->reflectionClass = new ReflectionClass($uploadType);
-        $this->method = $this->reflectionClass->getMethod($method);
-
+        $this->uploadInstance = $uploadInstance;
         return $this;
     }
 
     /**
+     * 设置配置
      * @param $config
      * @return $this
-     * @throws ReflectionException
      */
     public function setConfig($config): WzxUpload
     {
-        $set = $this->reflectionClass->getMethod('setConfig');
-        $set->setAccessible(true);
-        $set->invoke($this->uploadType, $config);
-
+        $this->uploadInstance->setConfig($config);
         return $this;
     }
 
@@ -77,8 +67,7 @@ class  WzxUpload
     public function upload(string $file, string $bucket = '', string $filePath = ''): string
     {
         try {
-            $this->method->setAccessible(true);
-            return $this->method->invoke($this->uploadType, $file, $bucket, $filePath);
+            return $this->uploadInstance->upload($file, $bucket, $filePath);
         } catch (\Exception $e) {
             throw new UploadException("上传异常");
         }

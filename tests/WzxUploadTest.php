@@ -10,13 +10,13 @@ class WzxUploadTest extends TestCase
     public function testOssUpload()
     {
         $config = [
-            'accessKeyId' => '',
-            'accessKeySecret' => '',
-            'endpoint' => ''
+            'accessKeyId' => 'LTAI5t7PuXPCfassXRsvYP6n',
+            'accessKeySecret' => 'FOgMgSmh89uHSvrembfwrAwaz72SV6',
+            'endpoint' => 'http://wzx2002.oss-cn-beijing.aliyuncs.com'
         ];
 
         $file = WzxUpload::getInstance()
-            ->setUploadType(OssUploadImpl::getInstance())
+            ->setUploadInstance(OssUploadImpl::getInstance())
             ->setConfig($config)
             ->upload('www.php', 'wzx2002', 'D:\phpstudy_pro\WWW\test\upload\src\WzxUpload.php');
 
@@ -31,7 +31,7 @@ class WzxUploadTest extends TestCase
         ];
 
         $file = WzxUpload::getInstance()
-            ->setUploadType(QiNiuUploadImpl::getInstance())
+            ->setUploadInstance(QiNiuUploadImpl::getInstance())
             ->setConfig($config)
             ->upload('www.php', 'wzx2002', 'D:\phpstudy_pro\WWW\test\upload\src\WzxUpload.php');
 
