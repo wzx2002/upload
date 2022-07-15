@@ -6,7 +6,7 @@ use ReflectionClass;
 use ReflectionException;
 use Wzx2002\Upload\Exceptions\UploadException;
 
-class  WzxUpload
+final class  WzxUpload
 {
     private static ?WzxUpload $instance = null;
 
