@@ -2,7 +2,6 @@
 
 namespace Wzx2002\Upload\Utils;
 
-use phpDocumentor\Reflection\Types\Self_;
 use Qiniu\Auth;
 use Qiniu\Storage\UploadManager;
 

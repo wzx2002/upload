@@ -2,8 +2,6 @@
 
 namespace Wzx2002\Upload;
 
-use ReflectionClass;
-use ReflectionException;
 use Wzx2002\Upload\Exceptions\UploadException;
 
 final class  WzxUpload
