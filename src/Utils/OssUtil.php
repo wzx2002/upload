@@ -9,9 +9,9 @@ class OssUtil
 {
     private static ?OssUtil $instance = null;
 
-    private $accessKeyId;
-    private $accessKeySecret;
-    private $endpoint;
+    private string $accessKeyId;
+    private string $accessKeySecret;
+    private string $endpoint;
 
     private function __clone()
     {
@@ -46,14 +46,14 @@ class OssUtil
 
     /**
      * 设置配置
-     * @param $config
+     * @param array $config
      * @return $this
      */
-    public function setConfig($config): OssUtil
+    public function setConfig(array $config): OssUtil
     {
-        $this->accessKeyId = $config['accessKeyId'];
-        $this->accessKeySecret = $config['accessKeySecret'];
-        $this->endpoint = $config['endpoint'];
+        $this->accessKeyId = $config['accessKeyId'] ?: '';
+        $this->accessKeySecret = $config['accessKeySecret'] ?: '';
+        $this->endpoint = $config['endpoint'] ?: '';
 
         return $this;
     }

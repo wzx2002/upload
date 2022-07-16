@@ -32,7 +32,7 @@ class QiNiuUploadImpl implements UploadInterface
         return self::$instance;
     }
 
-    public function setConfig($config)
+    public function setConfig(array $config)
     {
         $this->config = $config;
     }

@@ -2,7 +2,6 @@
 
 namespace Wzx2002\Upload;
 
-use JetBrains\PhpStorm\ArrayShape;
 use Wzx2002\Upload\Exceptions\UploadException;
 use Wzx2002\Upload\Interfaces\UploadInterface;
 
@@ -34,10 +33,10 @@ final class  WzxUpload
 
     /**
      * 上传设置类型和方法
-     * @param $uploadInstance
+     * @param UploadInterface|null $uploadInstance
      * @return $this
      */
-    public function setUploadInstance($uploadInstance): WzxUpload
+    public function setUploadInstance(?UploadInterface $uploadInstance): WzxUpload
     {
         $this->uploadInstance = $uploadInstance;
         return $this;
@@ -45,10 +44,10 @@ final class  WzxUpload
 
     /**
      * 设置配置
-     * @param $config
+     * @param array $config
      * @return $this
      */
-    public function setConfig($config): WzxUpload
+    public function setConfig(array $config): WzxUpload
     {
         $this->uploadInstance->setConfig($config);
         return $this;

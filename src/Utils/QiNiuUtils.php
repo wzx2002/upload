@@ -2,7 +2,6 @@
 
 namespace Wzx2002\Upload\Utils;
 
-use JetBrains\PhpStorm\Pure;
 use Qiniu\Auth;
 use Qiniu\Storage\UploadManager;
 
@@ -10,9 +9,9 @@ class QiNiuUtils
 {
     private static ?QiNiuUtils $instance = null;
 
-    private $accessKey;
+    private string $accessKey;
 
-    private $secretKey;
+    private string $secretKey;
 
     private function __construct()
     {
@@ -34,7 +33,7 @@ class QiNiuUtils
         return self::$instance;
     }
 
-    public function getToken($bucket): string
+    public function getToken(string $bucket): string
     {
         $auth = new Auth($this->accessKey, $this->secretKey);
         return $auth->uploadToken($bucket);
@@ -45,9 +44,14 @@ class QiNiuUtils
         return new UploadManager();
     }
 
-    public function setConfig($config)
+    /**
+     * 设置配置
+     * @param array $config
+     * @return void
+     */
+    public function setConfig(array $config)
     {
-        $this->accessKey = $config['accessKey'];
-        $this->secretKey = $config['secretKey'];
+        $this->accessKey = $config['accessKey'] ?: '';
+        $this->secretKey = $config['secretKey'] ?: '';
     }
 }
