@@ -39,6 +39,6 @@ class WzxUploadTest extends TestCase
 
         print_r($res);
 
-        $this->assertEquals('0', $res['errCode']);
+        $this->assertEquals('-1', $res['errCode']);
     }
 }
