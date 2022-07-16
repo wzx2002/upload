@@ -42,9 +42,9 @@ class OssUploadImpl implements UploadInterface
 
     /**
      * @param string $file 文件名
-     * @param string $bucket
      * @param string $filePath 文件路径
-     * @return null
+     * @param string $bucket
+     * @return mixed
      * @throws UploadException
      */
     public function upload(string $file, string $filePath, string $bucket)
