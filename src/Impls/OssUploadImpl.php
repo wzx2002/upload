@@ -10,6 +10,7 @@ use Wzx2002\Upload\Utils\OssUtil;
 class OssUploadImpl implements UploadInterface
 {
     private static ?OssUploadImpl $instance = null;
+
     private array $config = [];
 
     private function __clone()

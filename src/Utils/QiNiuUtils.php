@@ -2,6 +2,7 @@
 
 namespace Wzx2002\Upload\Utils;
 
+use JetBrains\PhpStorm\Pure;
 use Qiniu\Auth;
 use Qiniu\Storage\UploadManager;
 
@@ -12,6 +13,14 @@ class QiNiuUtils
     private $accessKey;
 
     private $secretKey;
+
+    private function __construct()
+    {
+    }
+
+    private function __clone()
+    {
+    }
 
     /**
      * @return QiNiuUtils|null

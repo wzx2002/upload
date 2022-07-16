@@ -2,15 +2,15 @@
 
 namespace Wzx2002\Upload;
 
+use JetBrains\PhpStorm\ArrayShape;
 use Wzx2002\Upload\Exceptions\UploadException;
+use Wzx2002\Upload\Interfaces\UploadInterface;
 
 final class  WzxUpload
 {
     private static ?WzxUpload $instance = null;
 
-    private $method = null;
-
-    private $uploadInstance = null;
+    private ?UploadInterface $uploadInstance = null;
 
     private function __clone()
     {

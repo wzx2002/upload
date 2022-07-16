@@ -10,7 +10,7 @@ class QiNiuUploadImpl implements UploadInterface
 {
     private static ?QiNiuUploadImpl $instance = null;
 
-    private $config = [];
+    private array $config = [];
 
     private function __clone()
     {
