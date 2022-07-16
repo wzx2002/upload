@@ -5,9 +5,9 @@ namespace Wzx2002\Upload\Utils;
 use Qiniu\Auth;
 use Qiniu\Storage\UploadManager;
 
-class QiNiuUtils
+class QiNiuUtil
 {
-    private static ?QiNiuUtils $instance = null;
+    private static ?QiNiuUtil $instance = null;
 
     private string $accessKey;
 
@@ -22,9 +22,9 @@ class QiNiuUtils
     }
 
     /**
-     * @return QiNiuUtils|null
+     * @return QiNiuUtil|null
      */
-    public static function getInstance(): ?QiNiuUtils
+    public static function getInstance(): ?QiNiuUtil
     {
         if (!self::$instance instanceof self) {
             return new self();

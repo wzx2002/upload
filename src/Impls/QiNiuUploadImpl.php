@@ -4,7 +4,7 @@ namespace Wzx2002\Upload\Impls;
 
 use Wzx2002\Upload\Exceptions\UploadException;
 use Wzx2002\Upload\Interfaces\UploadInterface;
-use Wzx2002\Upload\Utils\QiNiuUtils;
+use Wzx2002\Upload\Utils\QiNiuUtil;
 
 class QiNiuUploadImpl implements UploadInterface
 {
@@ -44,7 +44,7 @@ class QiNiuUploadImpl implements UploadInterface
      */
     public function upload(string $file, string $filePath, string $bucket)
     {
-        $instance = QiNiuUtils::getInstance();
+        $instance = QiNiuUtil::getInstance();
         $instance->setConfig($this->config);
         $token = $instance->getToken($bucket ?: $this->bucket);
 
