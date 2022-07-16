@@ -13,6 +13,8 @@ class OssUploadImpl implements UploadInterface
 
     private array $config = [];
 
+    private string $bucket;
+
     private function __clone()
     {
     }
@@ -45,14 +47,19 @@ class OssUploadImpl implements UploadInterface
      * @return null
      * @throws UploadException
      */
-    public function upload(string $file, string $bucket, string $filePath)
+    public function upload(string $file, string $filePath, string $bucket)
     {
         $instance = OssUtil::getInstance();
         $instance->setConfig($this->config);
         try {
-            return $instance->getOssClient()->uploadFile($bucket, $file, $filePath)['oss-request-url'];
+            return $instance->getOssClient()->uploadFile($bucket ?: $this->bucket, $file, $filePath)['oss-request-url'];
         } catch (OssException $e) {
             throw new UploadException($e->getMessage());
         }
+    }
+
+    public function setBucket(string $bucket)
+    {
+        $this->bucket = $bucket;
     }
 }

@@ -7,18 +7,23 @@ use Wzx2002\Upload\WzxUpload;
 
 class WzxUploadTest extends TestCase
 {
+    private array $oss_config = [
+        'accessKeyId' => 'LTAI5t7PuXPCfassXRsvYP6n',
+        'accessKeySecret' => 'FOgMgSmh89uHSvrembfwrAwaz72SV6',
+        'endpoint' => 'http://wzx2002.oss-cn-beijing.aliyuncs.com'
+    ];
+
+    private array $qi_niu_config = [
+        'accessKey' => 'Xvm5AJxlnhvbTQKlkqMgdj3ggRq0JzPhmJkNVrI_',
+        'secretKey' => '5KFIj3gAnzCSbp7uLBPlIEw1DhRH94KDs26-fMdr'
+    ];
+
     public function testOssUpload()
     {
-        $config = [
-            'accessKeyId' => 'LTAI5t7PuXPCfassXRsvYP6n',
-            'accessKeySecret' => 'FOgMgSmh89uHSvrembfwrAwaz72SV6',
-            'endpoint' => 'http://wzx2002.oss-cn-beijing.aliyuncs.com'
-        ];
-
         $res = WzxUpload::getInstance()
             ->setUploadInstance(OssUploadImpl::getInstance())
-            ->setConfig($config)
-            ->upload('www.php', 'wzx2002', 'D:\phpstudy_pro\WWW\test\upload\src\WzxUpload.php');
+            ->setConfig($this->oss_config)
+            ->upload('www.php', 'D:\phpstudy_pro\WWW\test\upload\src\WzxUpload.php', 'wzx2002');
 
         print_r($res);
 
@@ -27,15 +32,34 @@ class WzxUploadTest extends TestCase
 
     public function testQiNiuUpload()
     {
-        $config = [
-            'accessKey' => 'Xvm5AJxlnhvbTQKlkqMgdj3ggRq0JzPhmJkNVrI_',
-            'secretKey' => '5KFIj3gAnzCSbp7uLBPlIEw1DhRH94KDs26-fMdr'
-        ];
-
         $res = WzxUpload::getInstance()
             ->setUploadInstance(QiNiuUploadImpl::getInstance())
-            ->setConfig($config)
-            ->upload('www.php', 'wzx2002', 'D:\phpstudy_pro\WWW\test\upload\src\WzxUpload.php');
+            ->setConfig($this->qi_niu_config)
+            ->upload('www.php', 'D:\phpstudy_pro\WWW\test\upload\src\WzxUpload.php', 'wzx2002');
+
+        print_r($res);
+
+        $this->assertEquals('-1', $res['errCode']);
+    }
+
+    public function testSetBucketOss()
+    {
+        $instance = WzxUpload::getInstance()->setUploadInstance(OssUploadImpl::getInstance());
+        $instance->setBucket("wzx2002");
+        $instance->setConfig($this->oss_config);
+        $res = $instance->upload('test.jpg', 'D:\phpstudy_pro\WWW\test\upload\src\WzxUpload.php');
+
+        print_r($res);
+
+        $this->assertEquals('0', $res['errCode']);
+    }
+
+    public function testSetBucketQiNiu()
+    {
+        $instance = WzxUpload::getInstance()->setUploadInstance(QiNiuUploadImpl::getInstance());
+        $instance->setBucket("wzx2002");
+        $instance->setConfig($this->qi_niu_config);
+        $res = $instance->upload('test.jpg', 'D:\phpstudy_pro\WWW\test\upload\src\WzxUpload.php');
 
         print_r($res);
 

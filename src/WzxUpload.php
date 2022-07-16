@@ -54,13 +54,24 @@ final class  WzxUpload
     }
 
     /**
+     * 默认bucket设置
+     * @param string $bucket
+     * @return $this
+     */
+    public function setBucket(string $bucket): WzxUpload
+    {
+        $this->uploadInstance->setBucket($bucket);
+        return $this;
+    }
+
+    /**
      * 上传文件
      * @param string $file 文件名
-     * @param string $bucket
      * @param string $filePath 文件路径
+     * @param string $bucket
      * @return array
      */
-    public function upload(string $file, string $bucket = '', string $filePath = ''): array
+    public function upload(string $file, string $filePath = '', string $bucket = ''): array
     {
         $result = [
             'data' => [],
@@ -69,7 +80,7 @@ final class  WzxUpload
         ];
 
         try {
-            $result['data'] = $this->uploadInstance->upload($file, $bucket, $filePath);
+            $result['data'] = $this->uploadInstance->upload($file, $filePath, $bucket);
         } catch (UploadException $e) {
             $result['msg'] = $e->getMessage();
             $result['errCode'] = -1;

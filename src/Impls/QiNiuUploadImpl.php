@@ -12,6 +12,8 @@ class QiNiuUploadImpl implements UploadInterface
 
     private array $config = [];
 
+    private string $bucket;
+
     private function __clone()
     {
     }
@@ -40,11 +42,11 @@ class QiNiuUploadImpl implements UploadInterface
     /**
      * @throws UploadException
      */
-    public function upload(string $file, string $bucket, string $filePath)
+    public function upload(string $file, string $filePath, string $bucket)
     {
         $instance = QiNiuUtils::getInstance();
         $instance->setConfig($this->config);
-        $token = $instance->getToken($bucket);
+        $token = $instance->getToken($bucket ?: $this->bucket);
 
         list($res, $error) = $instance->getUploadMgr()->putFile($token, $file, $filePath);
         if (is_null($res)) {
@@ -52,5 +54,10 @@ class QiNiuUploadImpl implements UploadInterface
         }
 
         return $res;
+    }
+
+    public function setBucket(string $bucket)
+    {
+        $this->bucket = $bucket;
     }
 }
