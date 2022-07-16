@@ -44,10 +44,10 @@ class OssUploadImpl implements UploadInterface
      * @param string $file 文件名
      * @param string $filePath 文件路径
      * @param string $bucket
-     * @return mixed
+     * @return string
      * @throws UploadException
      */
-    public function upload(string $file, string $filePath, string $bucket)
+    public function upload(string $file, string $filePath, string $bucket): string
     {
         $instance = OssUtil::getInstance();
         $instance->setConfig($this->config);

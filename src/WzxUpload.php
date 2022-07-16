@@ -2,6 +2,7 @@
 
 namespace Wzx2002\Upload;
 
+use JetBrains\PhpStorm\ArrayShape;
 use Wzx2002\Upload\Exceptions\UploadException;
 use Wzx2002\Upload\Interfaces\UploadInterface;
 
@@ -71,6 +72,7 @@ final class  WzxUpload
      * @param string $bucket
      * @return array
      */
+    #[ArrayShape(['data' => "array", 'msg' => "string", 'errCode' => "int"])]
     public function upload(string $file, string $filePath = '', string $bucket = ''): array
     {
         $result = [
