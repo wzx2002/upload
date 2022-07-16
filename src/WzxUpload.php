@@ -62,7 +62,6 @@ final class  WzxUpload
      * @param string $bucket
      * @param string $filePath 文件路径
      * @return array
-     * @throws UploadException
      */
     public function upload(string $file, string $bucket = '', string $filePath = ''): array
     {
