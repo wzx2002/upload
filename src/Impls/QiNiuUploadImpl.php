@@ -45,10 +45,12 @@ class QiNiuUploadImpl implements UploadInterface
         $instance = QiNiuUtils::getInstance();
         $instance->setConfig($this->config);
         $token = $instance->getToken($bucket);
-        list($ret, $error) = $instance->getUploadMgr()->putFile($token, $file, $filePath);
-        if (is_null($ret)) {
-            throw new UploadException;
+
+        list($res, $error) = $instance->getUploadMgr()->putFile($token, $file, $filePath);
+        if (is_null($res)) {
+            throw new UploadException($error->getMessage());
         }
-        return $ret;
+
+        return $res;
     }
 }

@@ -61,15 +61,27 @@ final class  WzxUpload
      * @param string $file 文件名
      * @param string $bucket
      * @param string $filePath 文件路径
-     * @return string
+     * @return array
      * @throws UploadException
      */
-    public function upload(string $file, string $bucket = '', string $filePath = ''): string
+    public function upload(string $file, string $bucket = '', string $filePath = ''): array
     {
+        $result = [
+            'data' => [],
+            'msg' => '上传成功',
+            'errCode' => 0
+        ];
+
         try {
-            return $this->uploadInstance->upload($file, $bucket, $filePath);
+            $result['data'] = $this->uploadInstance->upload($file, $bucket, $filePath);
+        } catch (UploadException $e) {
+            $result['msg'] = $e->getMessage();
+            $result['errCode'] = -1;
         } catch (\Exception $e) {
-            throw new UploadException("上传异常");
+            $result['msg'] = "上传异常";
+            $result['errCode'] = -2;
         }
+
+        return $result;
     }
 }

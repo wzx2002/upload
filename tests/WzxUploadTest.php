@@ -15,12 +15,14 @@ class WzxUploadTest extends TestCase
             'endpoint' => 'http://wzx2002.oss-cn-beijing.aliyuncs.com'
         ];
 
-        $file = WzxUpload::getInstance()
+        $res = WzxUpload::getInstance()
             ->setUploadInstance(OssUploadImpl::getInstance())
             ->setConfig($config)
             ->upload('www.php', 'wzx2002', 'D:\phpstudy_pro\WWW\test\upload\src\WzxUpload.php');
 
-        $this->assertIsString($file);
+        print_r($res);
+
+        $this->assertEquals('0', $res['errCode']);
     }
 
     public function testQiNiuUpload()
@@ -30,11 +32,13 @@ class WzxUploadTest extends TestCase
             'accessKeySecret' => '5KFIj3gAnzCSbp7uLBPlIEw1DhRH94KDs26-fMdr'
         ];
 
-        $file = WzxUpload::getInstance()
+        $res = WzxUpload::getInstance()
             ->setUploadInstance(QiNiuUploadImpl::getInstance())
             ->setConfig($config)
             ->upload('www.php', 'wzx2002', 'D:\phpstudy_pro\WWW\test\upload\src\WzxUpload.php');
 
-        $this->assertIsString($file);
+        print_r($res);
+
+        $this->assertEquals('0', $res['errCode']);
     }
 }
