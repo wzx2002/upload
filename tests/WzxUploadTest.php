@@ -28,8 +28,8 @@ class WzxUploadTest extends TestCase
     public function testQiNiuUpload()
     {
         $config = [
-            'accessKeyId' => 'Xvm5AJxlnhvbTQKlkqMgdj3ggRq0JzPhmJkNVrI_',
-            'accessKeySecret' => '5KFIj3gAnzCSbp7uLBPlIEw1DhRH94KDs26-fMdr'
+            'accessKey' => 'Xvm5AJxlnhvbTQKlkqMgdj3ggRq0JzPhmJkNVrI_',
+            'secretKey' => '5KFIj3gAnzCSbp7uLBPlIEw1DhRH94KDs26-fMdr'
         ];
 
         $res = WzxUpload::getInstance()
