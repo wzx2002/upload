@@ -67,13 +67,13 @@ final class  WzxUpload
 
     /**
      * 上传文件
-     * @param string $file 文件名
-     * @param string $filePath 文件路径
+     * @param string $filename 文件名
+     * @param string|null $file 文件路径
      * @param string $bucket
      * @return array
      */
     #[ArrayShape(['data' => "array", 'msg' => "string", 'errCode' => "int"])]
-    public function upload(string $file, string $filePath = '', string $bucket = ''): array
+    public function upload(string $filename, ?string $file = '', string $bucket = ''): array
     {
         $result = [
             'data' => [],
@@ -82,7 +82,7 @@ final class  WzxUpload
         ];
 
         try {
-            $result['data'] = $this->uploadInstance->upload($file, $filePath, $bucket);
+            $result['data'] = $this->uploadInstance->upload($file, $file, $bucket);
         } catch (UploadException $e) {
             $result['msg'] = $e->getMessage();
             $result['errCode'] = -1;

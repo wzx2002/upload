@@ -41,18 +41,18 @@ class OssUploadImpl implements UploadInterface
     }
 
     /**
-     * @param string $file 文件名
-     * @param string $filePath 文件路径
+     * @param string $filename 文件名
+     * @param string|null $file 文件路径
      * @param string $bucket
      * @return string
      * @throws UploadException
      */
-    public function upload(string $file, string $filePath, string $bucket): string
+    public function upload(string $filename, ?string $file, string $bucket): string
     {
         $instance = OssUtil::getInstance();
         $instance->setConfig($this->config);
         try {
-            return $instance->getOssClient()->uploadFile($bucket ?: $this->bucket, $file, $filePath)['oss-request-url'];
+            return $instance->getOssClient()->uploadFile($bucket ?: $this->bucket, $filename, $file)['oss-request-url'];
         } catch (OssException $e) {
             throw new UploadException($e->getMessage());
         }
