@@ -1,6 +1,6 @@
 {
     "name": "wzx2002\/upload",
-    "description": "Package description here.",
+    "description": "七牛云&阿里OSS上传整合",
     "license": "MIT",
     "authors": [
         {
