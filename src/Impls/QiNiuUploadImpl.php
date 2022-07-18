@@ -2,17 +2,14 @@
 
 namespace Wzx2002\Upload\Impls;
 
+use Wzx2002\Upload\Base\BaseUpload;
 use Wzx2002\Upload\Exceptions\UploadException;
 use Wzx2002\Upload\Interfaces\UploadInterface;
 use Wzx2002\Upload\Utils\QiNiuUtil;
 
-class QiNiuUploadImpl implements UploadInterface
+class QiNiuUploadImpl extends BaseUpload implements UploadInterface
 {
     private static ?QiNiuUploadImpl $instance = null;
-
-    private array $config = [];
-
-    private string $bucket;
 
     private function __clone()
     {
@@ -34,10 +31,6 @@ class QiNiuUploadImpl implements UploadInterface
         return self::$instance;
     }
 
-    public function setConfig(array $config)
-    {
-        $this->config = $config;
-    }
 
     /**
      * @param string $filename 文件名
@@ -60,8 +53,4 @@ class QiNiuUploadImpl implements UploadInterface
         return $res;
     }
 
-    public function setBucket(string $bucket)
-    {
-        $this->bucket = $bucket;
-    }
 }

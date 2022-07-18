@@ -1,7 +1,6 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use Wzx2002\Upload\Impls\OssUploadImpl;
 use Wzx2002\Upload\Impls\QiNiuUploadImpl;
 use Wzx2002\Upload\WzxUpload;
 
@@ -21,6 +20,6 @@ class QiNiuUploadTest extends TestCase
 
         print_r($res);
 
-        $this->assertEquals('-1', $res['errCode']);
+        $this->assertEquals('0', $res['errCode']);
     }
 }

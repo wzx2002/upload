@@ -3,17 +3,14 @@
 namespace Wzx2002\Upload\Impls;
 
 use OSS\Core\OssException;
+use Wzx2002\Upload\Base\BaseUpload;
 use Wzx2002\Upload\Exceptions\UploadException;
 use Wzx2002\Upload\Interfaces\UploadInterface;
 use Wzx2002\Upload\Utils\OssUtil;
 
-class OssUploadImpl implements UploadInterface
+class OssUploadImpl extends BaseUpload implements UploadInterface
 {
     private static ?OssUploadImpl $instance = null;
-
-    private array $config = [];
-
-    private string $bucket;
 
     private function __clone()
     {
@@ -35,11 +32,6 @@ class OssUploadImpl implements UploadInterface
         return self::$instance;
     }
 
-    public function setConfig(array $config)
-    {
-        $this->config = $config;
-    }
-
     /**
      * @param string $filename 文件名
      * @param string|null $file 文件路径
@@ -56,10 +48,5 @@ class OssUploadImpl implements UploadInterface
         } catch (OssException $e) {
             throw new UploadException($e->getMessage());
         }
-    }
-
-    public function setBucket(string $bucket)
-    {
-        $this->bucket = $bucket;
     }
 }
