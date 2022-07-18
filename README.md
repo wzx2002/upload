@@ -25,7 +25,7 @@ $ composer require wzx2002/upload
     WzxUpload::getInstance()
             ->setUploadInstance(OssUploadImpl::getInstance())
             ->setConfig($oss_config)
-            ->upload($filename, $path, $bucket);
+            ->upload($filename, $file, $bucket);
 ```
 
 #### 七牛云
@@ -40,7 +40,7 @@ $ composer require wzx2002/upload
     WzxUpload::getInstance()
             ->setUploadInstance(QiNiuUploadImpl::getInstance())
             ->setConfig($qi_niu_config)
-            ->upload($filename, $path, $bucket);
+            ->upload($filename, $file, $bucket);
 ```
 
 
