@@ -6,7 +6,7 @@
 ## Installing
 
 ```shell
-$ composer require wzx2002/upload -vvv1
+$ composer require wzx2002/upload -vvv11
 ```
 
 ## Usage
