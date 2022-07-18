@@ -46,7 +46,7 @@ class QiNiuUploadImpl implements UploadInterface
      * @return string
      * @throws UploadException
      */
-    public function upload(string $file, string $filePath, string $bucket): string
+    public function upload(string $file, $filePath, string $bucket): string
     {
         $instance = QiNiuUtil::getInstance();
         $instance->setConfig($this->config);
