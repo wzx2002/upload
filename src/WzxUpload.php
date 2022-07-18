@@ -82,7 +82,7 @@ final class  WzxUpload
         ];
 
         try {
-            $result['data'] = $this->uploadInstance->upload($file, $file, $bucket);
+            $result['data'] = $this->uploadInstance->upload($filename, $file, $bucket);
         } catch (UploadException $e) {
             $result['msg'] = $e->getMessage();
             $result['errCode'] = -1;
