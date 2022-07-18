@@ -11,17 +11,36 @@ $ composer require wzx2002/upload -vvv
 
 ## Usage
 
-TODO
+#### 阿里云OSS
 
-## Contributing
+```php
+    $oss_config = [
+        'accessKeyId' => '',
+        'accessKeySecret' => '',
+        'endpoint' => ''
+    ];
+    
+    WzxUpload::getInstance()
+            ->setUploadInstance(OssUploadImpl::getInstance())
+            ->setConfig($oss_config)
+            ->upload($filename, $path, $bucket);
+```
 
-You can contribute in one of three ways:
+##### 七牛云
 
-1. File bug reports using the [issue tracker](https://github.com/wzx2002/upload/issues).
-2. Answer questions or fix bugs on the [issue tracker](https://github.com/wzx2002/upload/issues).
-3. Contribute new features or update the wiki.
 
-_The code contribution process is not very formal. You just need to make sure that you follow the PSR-0, PSR-1, and PSR-2 coding guidelines. Any new code contributions must be accompanied by unit tests where applicable._
+```php
+    $qi_niu_config = [
+        'accessKey' => '',
+        'secretKey' => ''
+    ];
+    
+    WzxUpload::getInstance()
+            ->setUploadInstance(QiNiuUploadImpl::getInstance())
+            ->setConfig($qi_niu_config)
+            ->upload($filename, $path, $bucket);
+```
+
 
 ## License
 
