@@ -8,14 +8,14 @@ use Wzx2002\Upload\WzxUpload;
 class WzxUploadTest extends TestCase
 {
     private array $oss_config = [
-        'accessKeyId' => 'LTAI5t7PuXPCfassXRsvYP6n',
-        'accessKeySecret' => 'FOgMgSmh89uHSvrembfwrAwaz72SV6',
-        'endpoint' => 'http://wzx2002.oss-cn-beijing.aliyuncs.com'
+        'accessKeyId' => '',
+        'accessKeySecret' => '',
+        'endpoint' => ''
     ];
 
     private array $qi_niu_config = [
-        'accessKey' => 'Xvm5AJxlnhvbTQKlkqMgdj3ggRq0JzPhmJkNVrI_',
-        'secretKey' => '5KFIj3gAnzCSbp7uLBPlIEw1DhRH94KDs26-fMdr'
+        'accessKey' => '',
+        'secretKey' => ''
     ];
 
     public function testOssUpload()
