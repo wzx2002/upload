@@ -2,14 +2,17 @@
 
 <p align="center"> .</p>
 
+## 简介
+    
+    对阿里OSS以及七牛云进行上传整合
 
-## Installing
+## 安装
 
 ```shell
 $ composer require wzx2002/upload
 ```
 
-## Usage
+## 使用
 
 #### 阿里云OSS
 
