@@ -1,6 +1,5 @@
 <h1 align="center"> upload </h1>
 
-<p align="center"> .</p>
 
 ## 简介
     
