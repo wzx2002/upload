@@ -35,7 +35,8 @@ $ composer require wzx2002/upload
 ```php
     $qi_niu_config = [
         'accessKey' => '',
-        'secretKey' => ''
+        'secretKey' => '',
+        'domain' => ''
     ];
     
     WzxUpload::getInstance()
