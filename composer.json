@@ -17,7 +17,7 @@
         "phpunit/phpunit": "^9.5"
     },
     "require": {
-        "php": "^7.4",
+        "php": "^7.3|^8.0",
         "aliyuncs/oss-sdk-php": "^2.5",
         "qiniu/php-sdk": "^7.6",
         "qcloud/cos-sdk-v5": "^2.5"
