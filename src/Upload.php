@@ -2,7 +2,6 @@
 
 namespace Wzx2002\Upload;
 
-use JetBrains\PhpStorm\ArrayShape;
 use Wzx2002\Upload\Exceptions\ConfigException;
 use Wzx2002\Upload\Exceptions\UploadException;
 use Wzx2002\Upload\Interfaces\UploadInterface;
