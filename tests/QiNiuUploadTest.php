@@ -8,7 +8,8 @@ class QiNiuUploadTest extends TestCase
 {
     private array $qi_niu_config = [
         'accessKey' => '',
-        'secretKey' => ''
+        'secretKey' => '',
+        'domain' => ''
     ];
 
     public function testQiNiuUpload()
@@ -16,7 +17,7 @@ class QiNiuUploadTest extends TestCase
         $res = WzxUpload::getInstance()
             ->setUploadInstance(QiNiuUploadImpl::getInstance())
             ->setConfig($this->qi_niu_config)
-            ->upload('www.php', 'D:\phpstudy_pro\WWW\test\upload\src\WzxUpload.php', 'wzx2002');
+            ->upload('www.tx', 'D:\phpstudy_pro\WWW\test\upload\src\WzxUpload.php', 'wzx2002');
 
         print_r($res);
 

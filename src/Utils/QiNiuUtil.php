@@ -4,6 +4,7 @@ namespace Wzx2002\Upload\Utils;
 
 use Qiniu\Auth;
 use Qiniu\Storage\UploadManager;
+use Wzx2002\Upload\Exceptions\ConfigException;
 
 class QiNiuUtil
 {
@@ -12,6 +13,8 @@ class QiNiuUtil
     private string $accessKey;
 
     private string $secretKey;
+
+    private string $domain;
 
     private function __construct()
     {
@@ -48,10 +51,15 @@ class QiNiuUtil
      * 设置配置
      * @param array $config
      * @return void
+     * @throws ConfigException
      */
     public function setConfig(array $config)
     {
+        if (empty($config['domain'])) {
+            throw new ConfigException('domain不能为空');
+        }
         $this->accessKey = $config['accessKey'] ?: '';
         $this->secretKey = $config['secretKey'] ?: '';
+        $this->domain = $config['domain'];
     }
 }

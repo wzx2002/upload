@@ -3,6 +3,7 @@
 namespace Wzx2002\Upload;
 
 use JetBrains\PhpStorm\ArrayShape;
+use Wzx2002\Upload\Exceptions\ConfigException;
 use Wzx2002\Upload\Exceptions\UploadException;
 use Wzx2002\Upload\Interfaces\UploadInterface;
 
@@ -72,7 +73,6 @@ final class  WzxUpload
      * @param string $bucket
      * @return array
      */
-    #[ArrayShape(['data' => "array", 'msg' => "string", 'errCode' => "int"])]
     public function upload(string $filename, ?string $file = '', string $bucket = ''): array
     {
         $result = [
@@ -86,9 +86,12 @@ final class  WzxUpload
         } catch (UploadException $e) {
             $result['msg'] = $e->getMessage();
             $result['errCode'] = -1;
-        } catch (\Exception $e) {
-            $result['msg'] = "上传异常";
+        } catch (ConfigException $e) {
+            $result['msg'] = $e->getMessage();
             $result['errCode'] = -2;
+        } catch (\Exception $e) {
+            $result['msg'] = '上传异常';
+            $result['errCode'] = -3;
         }
 
         return $result;
