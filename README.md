@@ -48,7 +48,7 @@ $ composer require wzx2002/upload
 #### 腾讯云COS
 
 ```php
-    $cos_config = $cos_config = [
+    $cos_config = [
         'secretId' => '',
         'secretKey' => '',
         'region' => ''
