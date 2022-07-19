@@ -105,7 +105,7 @@ final class  Upload
     {
         if (empty($filename)) {
             $ext = strrchr($file, '.');
-            $filename = date('Ymd') . '-' . md5($file) . $ext;
+            $filename = date('YmdHis') . '-' . md5($file) . '-' . time() . $ext;
         }
 
         return $filename;
