@@ -23,7 +23,7 @@ $ composer require wzx2002/upload
         'endpoint' => ''
     ];
     
-    WzxUpload::getInstance()
+    Upload::getInstance()
             ->setUploadInstance(OssUploadImpl::getInstance())
             ->setConfig($oss_config)
             ->upload($filename, $file, $bucket);
@@ -39,7 +39,7 @@ $ composer require wzx2002/upload
         'domain' => ''
     ];
     
-    WzxUpload::getInstance()
+    Upload::getInstance()
             ->setUploadInstance(QiNiuUploadImpl::getInstance())
             ->setConfig($qi_niu_config)
             ->upload($filename, $file, $bucket);
@@ -55,7 +55,7 @@ $ composer require wzx2002/upload
         'region' => ''
     ];
     
-    WzxUpload::getInstance()
+    Upload::getInstance()
             ->setUploadInstance(CosUploadImpl::getInstance())
             ->setConfig($qi_niu_config)
             ->upload($filename, $file, $bucket);
@@ -64,7 +64,7 @@ $ composer require wzx2002/upload
 #### 其他使用
 
 ```php
-    $instance = WzxUpload::getInstance()
+    $instance = Upload::getInstance()
             ->setUploadInstance(CosUploadImpl::getInstance());
     $instance->setConfig($cos_config);
     $instance->setBucket($bucket);
