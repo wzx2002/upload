@@ -16,10 +16,11 @@ class CosUploadTest extends TestCase
 
     public function testOssUpload()
     {
-        $res = Upload::getInstance()
-                ->setUploadInstance(CosUploadImpl::getInstance())
-            ->setConfig($this->cos_config)
-            ->upload('www.php', 'Upload.php', 'wzx2002');
+        $instance = Upload::getInstance()
+            ->setUploadInstance(CosUploadImpl::getInstance());
+        $instance->setConfig($this->cos_config);
+        $instance->setBucket('wzx2002');
+        $res = $instance->upload('Upload.php');
 
         print_r($res);
 

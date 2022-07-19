@@ -15,10 +15,11 @@ class OssUploadTest extends TestCase
 
     public function testOssUpload()
     {
-        $res = Upload::getInstance()
-            ->setUploadInstance(OssUploadImpl::getInstance())
-            ->setConfig($this->oss_config)
-            ->upload('www.php', 'Upload.php', 'wzx2002');
+        $instance = Upload::getInstance()
+            ->setUploadInstance(OssUploadImpl::getInstance());
+        $instance->setConfig($this->oss_config);
+        $instance->setBucket('wzx2002');
+        $res = $instance->upload('Upload.php');
 
         print_r($res);
 

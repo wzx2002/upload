@@ -14,10 +14,11 @@ class QiNiuUploadTest extends TestCase
 
     public function testQiNiuUpload()
     {
-        $res = Upload::getInstance()
-            ->setUploadInstance(QiNiuUploadImpl::getInstance())
-            ->setConfig($this->qi_niu_config)
-            ->upload('www.php', 'Upload.php', 'wzx2002');
+        $instance = Upload::getInstance()
+            ->setUploadInstance(QiNiuUploadImpl::getInstance());
+        $instance->setConfig($this->qi_niu_config);
+        $instance->setBucket('wzx2002');
+        $res = $instance->upload('Upload.php');
 
         print_r($res);
 

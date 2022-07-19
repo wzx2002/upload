@@ -55,30 +55,21 @@ final class  Upload
     }
 
     /**
-     * 默认bucket设置
-     * @param string $bucket
-     * @return $this
-     */
-    public function setBucket(string $bucket): Upload
-    {
-        $this->uploadInstance->setBucket($bucket);
-        return $this;
-    }
-
-    /**
      * 上传文件
-     * @param string $filename 文件名
      * @param string|null $file 文件路径
+     * @param string $filename 文件名
      * @param string $bucket
      * @return array
      */
-    public function upload(string $filename, ?string $file = '', string $bucket = ''): array
+    public function upload(?string $file, string $filename = '', string $bucket = ''): array
     {
         $result = [
             'data' => [],
             'msg' => '上传成功',
             'errCode' => 0
         ];
+
+        $filename = $this->makeFilename($file, $filename);
 
         try {
             $result['data'] = $this->uploadInstance->upload($filename, $file, $bucket);
@@ -91,5 +82,32 @@ final class  Upload
         }
 
         return $result;
+    }
+
+    /**
+     * 默认bucket设置
+     * @param string $bucket
+     * @return $this
+     */
+    public function setBucket(string $bucket): Upload
+    {
+        $this->uploadInstance->setBucket($bucket);
+        return $this;
+    }
+
+    /**
+     * 生成文件名称
+     * @param string|null $file
+     * @param string $filename
+     * @return string
+     */
+    private function makeFilename(?string $file, string $filename): string
+    {
+        if (empty($filename)) {
+            $ext = strrchr($file, '.');
+            $filename = date('Ymd') . '-' . md5($file) . $ext;
+        }
+
+        return $filename;
     }
 }
