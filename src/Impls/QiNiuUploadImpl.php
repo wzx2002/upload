@@ -58,7 +58,7 @@ class QiNiuUploadImpl extends BaseUpload implements UploadInterface
             throw new UploadException($error->message());
         }
 
-        return $this->config['domain'] . DIRECTORY_SEPARATOR . $res['key'];
+        return $this->config['domain'] . '/' . $res['key'];
     }
 
 }
