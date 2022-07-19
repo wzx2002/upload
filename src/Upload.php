@@ -83,15 +83,12 @@ final class  Upload
 
         try {
             $result['data'] = $this->uploadInstance->upload($filename, $file, $bucket);
-        } catch (UploadException $e) {
+        } catch (UploadException|ConfigException $e) {
             $result['msg'] = $e->getMessage();
             $result['errCode'] = -1;
-        } catch (ConfigException $e) {
-            $result['msg'] = $e->getMessage();
-            $result['errCode'] = -2;
         } catch (\Exception $e) {
             $result['msg'] = $e->getMessage();
-            $result['errCode'] = -3;
+            $result['errCode'] = -2;
         }
 
         return $result;
