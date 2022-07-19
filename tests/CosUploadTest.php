@@ -8,9 +8,9 @@ use Wzx2002\Upload\Upload;
 class CosUploadTest extends TestCase
 {
     private array $cos_config = [
-        'secretId' => 'AKIDue7oENFqADzUifKiupSouiFVZMr52i7F',
-        'secretKey' => 'sTnqb6JFuHOEn57sLXT8VbQebGelb9RS',
-        'region' => 'ap-shanghai'
+        'secretId' => '',
+        'secretKey' => '',
+        'region' => ''
     ];
 
 
@@ -19,7 +19,7 @@ class CosUploadTest extends TestCase
         $instance = Upload::getInstance()
             ->setUploadInstance(CosUploadImpl::getInstance());
         $instance->setConfig($this->cos_config);
-        $instance->setBucket('wzx2002-1302535132');
+        $instance->setBucket('wzx2002');
         $res = $instance->upload('Upload.php');
 
         print_r($res);
