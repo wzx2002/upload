@@ -56,7 +56,7 @@ class QiNiuUtil
     public function setConfig(array $config)
     {
         if (empty($config['domain'])) {
-            throw new ConfigException('domain不能为空');
+            throw new ConfigException('domain is empty');
         }
         $this->accessKey = $config['accessKey'] ?: '';
         $this->secretKey = $config['secretKey'] ?: '';
