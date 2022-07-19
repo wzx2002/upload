@@ -3,7 +3,7 @@
 use PHPUnit\Framework\TestCase;
 use Wzx2002\Upload\Impls\CosUploadImpl;
 use Wzx2002\Upload\Impls\OssUploadImpl;
-use Wzx2002\Upload\WzxUpload;
+use Wzx2002\Upload\Upload;
 
 class CosUploadTest extends TestCase
 {
@@ -16,10 +16,10 @@ class CosUploadTest extends TestCase
 
     public function testOssUpload()
     {
-        $res = WzxUpload::getInstance()
+        $res = Upload::getInstance()
                 ->setUploadInstance(CosUploadImpl::getInstance())
             ->setConfig($this->cos_config)
-            ->upload('www.php', 'WzxUpload.php', 'wzx2002');
+            ->upload('www.php', 'Upload.php', 'wzx2002');
 
         print_r($res);
 

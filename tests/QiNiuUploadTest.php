@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 use Wzx2002\Upload\Impls\QiNiuUploadImpl;
-use Wzx2002\Upload\WzxUpload;
+use Wzx2002\Upload\Upload;
 
 class QiNiuUploadTest extends TestCase
 {
@@ -14,10 +14,10 @@ class QiNiuUploadTest extends TestCase
 
     public function testQiNiuUpload()
     {
-        $res = WzxUpload::getInstance()
+        $res = Upload::getInstance()
             ->setUploadInstance(QiNiuUploadImpl::getInstance())
             ->setConfig($this->qi_niu_config)
-            ->upload('www.php', 'WzxUpload.php', 'wzx2002');
+            ->upload('www.php', 'Upload.php', 'wzx2002');
 
         print_r($res);
 

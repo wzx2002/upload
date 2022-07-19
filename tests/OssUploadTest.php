@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 use Wzx2002\Upload\Impls\OssUploadImpl;
-use Wzx2002\Upload\WzxUpload;
+use Wzx2002\Upload\Upload;
 
 class OssUploadTest extends TestCase
 {
@@ -15,10 +15,10 @@ class OssUploadTest extends TestCase
 
     public function testOssUpload()
     {
-        $res = WzxUpload::getInstance()
+        $res = Upload::getInstance()
             ->setUploadInstance(OssUploadImpl::getInstance())
             ->setConfig($this->oss_config)
-            ->upload('www.php', 'WzxUpload.php', 'wzx2002');
+            ->upload('www.php', 'Upload.php', 'wzx2002');
 
         print_r($res);
 

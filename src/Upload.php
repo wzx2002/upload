@@ -7,9 +7,9 @@ use Wzx2002\Upload\Exceptions\ConfigException;
 use Wzx2002\Upload\Exceptions\UploadException;
 use Wzx2002\Upload\Interfaces\UploadInterface;
 
-final class  WzxUpload
+final class  Upload
 {
-    private static ?WzxUpload $instance = null;
+    private static ?Upload $instance = null;
 
     private ?UploadInterface $uploadInstance = null;
 
@@ -22,9 +22,9 @@ final class  WzxUpload
     }
 
     /**
-     * @return WzxUpload|null
+     * @return Upload|null
      */
-    public static function getInstance(): ?WzxUpload
+    public static function getInstance(): ?Upload
     {
         if (!self::$instance instanceof self) {
             return new self();
@@ -38,7 +38,7 @@ final class  WzxUpload
      * @param UploadInterface|null $uploadInstance
      * @return $this
      */
-    public function setUploadInstance(?UploadInterface $uploadInstance): WzxUpload
+    public function setUploadInstance(?UploadInterface $uploadInstance): Upload
     {
         $this->uploadInstance = $uploadInstance;
         return $this;
@@ -49,7 +49,7 @@ final class  WzxUpload
      * @param array $config
      * @return $this
      */
-    public function setConfig(array $config): WzxUpload
+    public function setConfig(array $config): Upload
     {
         $this->uploadInstance->setConfig($config);
         return $this;
@@ -60,7 +60,7 @@ final class  WzxUpload
      * @param string $bucket
      * @return $this
      */
-    public function setBucket(string $bucket): WzxUpload
+    public function setBucket(string $bucket): Upload
     {
         $this->uploadInstance->setBucket($bucket);
         return $this;
