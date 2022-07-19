@@ -61,6 +61,15 @@ $ composer require wzx2002/upload
             ->upload($filename, $file, $bucket);
 ```
 
+#### 其他使用
+
+```php
+    $instance = WzxUpload::getInstance()
+            ->setUploadInstance(CosUploadImpl::getInstance());
+    $instance->setConfig($cos_config);
+    $instance->setBucket($bucket);
+    $instance->upload($filename, $file);
+```
 
 ## License
 
