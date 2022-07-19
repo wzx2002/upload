@@ -22,6 +22,6 @@ class OssUploadTest extends TestCase
 
         print_r($res);
 
-        $this->assertEquals('0', $res['errCode']);
+        $this->assertEquals(0, $res['errCode']);
     }
 }
