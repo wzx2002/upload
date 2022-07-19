@@ -90,7 +90,7 @@ final class  Upload
             $result['msg'] = $e->getMessage();
             $result['errCode'] = -2;
         } catch (\Exception $e) {
-            $result['msg'] = '上传异常';
+            $result['msg'] = $e->getMessage();
             $result['errCode'] = -3;
         }
 
