@@ -3,13 +3,14 @@
 
 ## 简介
     
-对阿里OSS以及七牛云进行上传整合
+
 
 ## 安装
 
 ```shell
 $ composer require wzx2002/upload
 ```
+
 
 ## 使用
 
@@ -28,8 +29,8 @@ $ composer require wzx2002/upload
             ->upload($filename, $file, $bucket);
 ```
 
-#### 七牛云
 
+#### 七牛云
 
 ```php
     $qi_niu_config = [
@@ -39,6 +40,22 @@ $ composer require wzx2002/upload
     
     WzxUpload::getInstance()
             ->setUploadInstance(QiNiuUploadImpl::getInstance())
+            ->setConfig($qi_niu_config)
+            ->upload($filename, $file, $bucket);
+```
+
+
+#### 腾讯云COS
+
+```php
+    $cos_config = [
+        'secretId' => '',
+        'secretKey' => '',
+        'region' => ''
+    ];
+    
+    WzxUpload::getInstance()
+            ->setUploadInstance(CosUploadImpl::getInstance())
             ->setConfig($qi_niu_config)
             ->upload($filename, $file, $bucket);
 ```
