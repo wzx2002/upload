@@ -19,7 +19,7 @@ class CosUploadTest extends TestCase
         $res = WzxUpload::getInstance()
                 ->setUploadInstance(CosUploadImpl::getInstance())
             ->setConfig($this->cos_config)
-            ->upload('www.php', 'D:\phpstudy_pro\WWW\test\upload\src\WzxUpload.php', 'wzx2002');
+            ->upload('www.php', 'WzxUpload.php', 'wzx2002');
 
         print_r($res);
 
