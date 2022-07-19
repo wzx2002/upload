@@ -57,11 +57,11 @@ final class  Upload
     /**
      * 上传文件
      * @param string|null $file 文件路径
-     * @param string $filename 文件名
      * @param string $bucket
+     * @param string $filename 文件名
      * @return array
      */
-    public function upload(?string $file, string $filename = '', string $bucket = ''): array
+    public function upload(?string $file, string $bucket = '', string $filename = ''): array
     {
         $result = [
             'data' => [],

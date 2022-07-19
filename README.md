@@ -1,8 +1,7 @@
 <h1 align="center"> upload </h1>
 
-
 ## 简介
-    
+
 整合阿里云&七牛云&腾讯云存储的上传功能
 
 ## 安装
@@ -10,7 +9,6 @@
 ```shell
 $ composer require wzx2002/upload
 ```
-
 
 ## 使用
 
@@ -26,9 +24,8 @@ $ composer require wzx2002/upload
     Upload::getInstance()
             ->setUploadInstance(OssUploadImpl::getInstance())
             ->setConfig($oss_config)
-            ->upload($filename, $file, $bucket);
+            ->upload($file, $bucket, $filename);
 ```
-
 
 #### 七牛云
 
@@ -42,9 +39,8 @@ $ composer require wzx2002/upload
     Upload::getInstance()
             ->setUploadInstance(QiNiuUploadImpl::getInstance())
             ->setConfig($qi_niu_config)
-            ->upload($filename, $file, $bucket);
+            ->upload($file);
 ```
-
 
 #### 腾讯云COS
 
@@ -58,7 +54,7 @@ $ composer require wzx2002/upload
     Upload::getInstance()
             ->setUploadInstance(CosUploadImpl::getInstance())
             ->setConfig($qi_niu_config)
-            ->upload($filename, $file, $bucket);
+            ->upload($file);
 ```
 
 #### 其他使用
@@ -68,7 +64,7 @@ $ composer require wzx2002/upload
             ->setUploadInstance(CosUploadImpl::getInstance());
     $instance->setConfig($cos_config);
     $instance->setBucket($bucket);
-    $instance->upload($filename, $file);
+    $instance->upload($file);
 ```
 
 ## License
