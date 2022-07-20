@@ -4,7 +4,6 @@ namespace Wzx2002\Upload\Utils;
 
 use Qiniu\Auth;
 use Qiniu\Storage\UploadManager;
-use Wzx2002\Upload\Exceptions\ConfigException;
 
 class QiNiuUtil
 {
