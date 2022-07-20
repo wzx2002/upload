@@ -18,7 +18,7 @@ class QiNiuUploadTest extends TestCase
             ->setUploadInstance(QiNiuUploadImpl::getInstance());
         $instance->setConfig($this->qi_niu_config);
         $instance->setBucket('wzx2002');
-        $res = $instance->upload('Upload.php');
+        $res = $instance->upload('D:\phpstudy_pro\WWW\test\upload\src\Upload.php', 'test');
 
         print_r($res);
 

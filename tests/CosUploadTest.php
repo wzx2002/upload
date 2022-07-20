@@ -20,7 +20,7 @@ class CosUploadTest extends TestCase
             ->setUploadInstance(CosUploadImpl::getInstance());
         $instance->setConfig($this->cos_config);
         $instance->setBucket('wzx2002');
-        $res = $instance->upload('Upload.php');
+        $res = $instance->upload('D:\phpstudy_pro\WWW\test\upload\src\Upload.php', 'test');
 
         print_r($res);
 
