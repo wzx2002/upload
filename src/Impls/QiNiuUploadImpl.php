@@ -43,8 +43,9 @@ class QiNiuUploadImpl extends BaseUpload implements UploadInterface
      * @return string
      * @throws UploadException
      * @throws ConfigException
+     * @throws \Exception
      */
-    public function upload(string $filename, ?string $file, string $bucket): string
+    public function upload(?string $file, string $bucket, string $filename): string
     {
         $instance = QiNiuUtil::getInstance();
         $instance->setConfig($this->config);
@@ -60,5 +61,4 @@ class QiNiuUploadImpl extends BaseUpload implements UploadInterface
 
         return $this->config['domain'] . '/' . $res['key'];
     }
-
 }

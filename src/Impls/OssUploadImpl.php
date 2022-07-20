@@ -39,7 +39,7 @@ class OssUploadImpl extends BaseUpload implements UploadInterface
      * @return string
      * @throws UploadException
      */
-    public function upload(string $filename, ?string $file, string $bucket): string
+    public function upload(?string $file, string $bucket, string $filename): string
     {
         $instance = OssUtil::getInstance();
         $instance->setConfig($this->config);

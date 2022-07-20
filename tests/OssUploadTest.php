@@ -19,7 +19,7 @@ class OssUploadTest extends TestCase
             ->setUploadInstance(OssUploadImpl::getInstance());
         $instance->setConfig($this->oss_config);
         $instance->setBucket('wzx2002');
-        $res = $instance->upload('Upload.php');
+        $res = $instance->upload('D:\phpstudy_pro\WWW\test\upload\src\Upload.php', 'test');
 
         print_r($res);
 

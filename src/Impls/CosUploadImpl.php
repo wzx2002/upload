@@ -31,10 +31,15 @@ class CosUploadImpl extends BaseUpload implements UploadInterface
         return self::$instance;
     }
 
+
     /**
+     * @param string|null $file
+     * @param string $bucket
+     * @param string $filename
+     * @return string
      * @throws UploadException
      */
-    public function upload(string $filename, ?string $file, string $bucket)
+    public function upload(?string $file, string $bucket, string $filename): string
     {
         $instance = CosUtil::getInstance();
         $instance->setConfig($this->config);

@@ -55,13 +55,14 @@ final class  Upload
     }
 
     /**
-     * 上传文件
-     * @param string|null $file 文件路径
+     * 文件上传
+     * @param string|null $file 文件
+     * @param string $dir 目录
      * @param string $bucket
-     * @param string $filename 文件名
+     * @param string $filename 自定义文件名称
      * @return array
      */
-    public function upload(?string $file, string $bucket = '', string $filename = ''): array
+    public function upload(?string $file, string $dir = '', string $bucket = '', string $filename = ''): array
     {
         $result = [
             'data' => [],
@@ -69,10 +70,10 @@ final class  Upload
             'errCode' => 0
         ];
 
-        $filename = $this->makeFilename($file, $filename);
+        $filename = $this->makeFilename($file, $filename, $dir);
 
         try {
-            $result['data'] = $this->uploadInstance->upload($filename, $file, $bucket);
+            $result['data'] = $this->uploadInstance->upload($file, $bucket, $filename);
         } catch (UploadException|ConfigException $e) {
             $result['msg'] = $e->getMessage();
             $result['errCode'] = -1;
@@ -99,15 +100,16 @@ final class  Upload
      * 生成文件名称
      * @param string|null $file
      * @param string $filename
+     * @param string $dir
      * @return string
      */
-    private function makeFilename(?string $file, string $filename): string
+    private function makeFilename(?string $file, string $filename, string $dir): string
     {
         if (empty($filename)) {
             $ext = strrchr($file, '.');
             $filename = date('YmdHis') . '-' . md5($file) . '-' . time() . $ext;
         }
 
-        return $filename;
+        return $dir . '/' . $filename;
     }
 }
