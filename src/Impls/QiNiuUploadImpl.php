@@ -2,9 +2,7 @@
 
 namespace Wzx2002\Upload\Impls;
 
-use Qiniu\Config;
 use Qiniu\Http\Error;
-use Qiniu\Http\Request;
 use Wzx2002\Upload\Base\BaseUpload;
 use Wzx2002\Upload\Exceptions\ConfigException;
 use Wzx2002\Upload\Exceptions\UploadException;
@@ -48,6 +46,9 @@ class QiNiuUploadImpl extends BaseUpload implements UploadInterface
     public function upload(?string $file, string $bucket, string $filename): string
     {
         $instance = QiNiuUtil::getInstance();
+        if (!$this->config['domain']) {
+            throw new ConfigException('domain is empty');
+        }
         $instance->setConfig($this->config);
         $token = $instance->getToken($bucket ?: $this->bucket);
 

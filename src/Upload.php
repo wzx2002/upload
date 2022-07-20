@@ -85,6 +85,10 @@ final class  Upload
         } catch (\Exception $e) {
             $result['msg'] = $e->getMessage();
             $result['errCode'] = -2;
+        } finally {
+            if (file_exists($file)) {
+                @unlink($file);
+            }
         }
 
         return $result;

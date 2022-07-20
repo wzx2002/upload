@@ -14,8 +14,6 @@ class QiNiuUtil
 
     private string $secretKey;
 
-    private string $domain;
-
     private function __construct()
     {
     }
@@ -51,15 +49,10 @@ class QiNiuUtil
      * 设置配置
      * @param array $config
      * @return void
-     * @throws ConfigException
      */
     public function setConfig(array $config)
     {
-        if (empty($config['domain'])) {
-            throw new ConfigException('domain is empty');
-        }
         $this->accessKey = $config['accessKey'] ?: '';
         $this->secretKey = $config['secretKey'] ?: '';
-        $this->domain = $config['domain'];
     }
 }
