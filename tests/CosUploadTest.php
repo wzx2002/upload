@@ -10,7 +10,7 @@ class CosUploadTest extends TestCase
     private array $cos_config = [
         'secretId' => '',
         'secretKey' => '',
-        'region' => ''
+        'region' => 'ap-shanghai'
     ];
 
 
@@ -20,7 +20,7 @@ class CosUploadTest extends TestCase
             ->setUploadInstance(CosUploadImpl::getInstance());
         $instance->setConfig($this->cos_config);
         $instance->setBucket('wzx2002');
-        $res = $instance->upload('D:\phpstudy_pro\WWW\test\upload\src\Upload.php', 'test');
+        $res = $instance->upload('http://wzx2002.oss-cn-beijing.aliyuncs.com/20220720131614-4d27e8c7f04898947b0942d6016b702a-1658294174.webp');
 
         print_r($res);
 

@@ -70,9 +70,14 @@ final class  Upload
             'errCode' => 0
         ];
 
-        $filename = $this->makeFilename($file, $filename, $dir);
+        $str = strstr($file, ',', true);
+        $regex = "/^data:image\/\w{3,4};base64$/";
 
         try {
+            if (preg_match($regex, $str)) {
+                $file = $this->Base64ToImage($file);
+            }
+            $filename = $this->makeFilename($file, $filename, $dir);
             $result['data'] = $this->uploadInstance->upload($file, $bucket, $filename);
         } catch (UploadException|ConfigException $e) {
             $result['msg'] = $e->getMessage();
@@ -110,6 +115,29 @@ final class  Upload
             $filename = date('YmdHis') . '-' . md5($file) . '-' . time() . $ext;
         }
 
-        return $dir . '/' . $filename;
+
+        return empty($dir) ? $filename : $dir . '/' . $filename;
+    }
+
+    /**
+     * 获取base64图片生成文件
+     * @param string|null $file
+     * @return string
+     * @throws UploadException
+     */
+    private function Base64ToImage(?string $file): string
+    {
+        if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $file, $matches)) {
+            $ext = $matches[2];
+            $base64_decode = base64_decode(explode(',', $file)[1]);
+            $path = md5(time() . date('Ymd')) . '.' . $ext;
+            if (file_put_contents($path, $base64_decode)) {
+                return $path;
+            } else {
+                throw new UploadException("base64 转换失败");
+            }
+        }
+
+        return $file;
     }
 }
