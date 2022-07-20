@@ -133,9 +133,8 @@ final class  Upload
             $path = md5(time() . date('Ymd')) . '.' . $ext;
             if (file_put_contents($path, $base64_decode)) {
                 return $path;
-            } else {
-                throw new UploadException("base64 转换失败");
             }
+            throw new UploadException("base64 转换失败");
         }
 
         return $file;
