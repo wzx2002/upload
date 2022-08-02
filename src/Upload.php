@@ -98,13 +98,14 @@ final class  Upload
             'msg' => '上传成功',
             'errCode' => 0
         ];
-        foreach ($files as $file) {
-            try {
+
+        try {
+            foreach ($files as $file) {
                 $result['data'][] = $this->baseUpload($file, $dir, $bucket, $filename);
-            } catch (UploadException $e) {
-                $result['msg'] = $e->getMessage();
-                $result['errCode'] = -1;
             }
+        } catch (UploadException $e) {
+            $result['msg'] = $e->getMessage();
+            $result['errCode'] = -1;
         }
 
         return $result;
