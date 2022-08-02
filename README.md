@@ -4,15 +4,15 @@
 
 整合阿里云&七牛云&腾讯云存储的上传功能。支持tp和laravel框架。
 
-`普通图片上传:- [x]`
+-[x] `普通图片上传`
 
-`base64图片上传:- [x]`
+-[x] `base64图片上传`
 
-`普通图片多图上传:- [x]`
+-[x] `普通图片多图上传`
 
-`base64图片多图上传:- [x]`
+-[x] `base64图片多图上传`
 
-`大文件分块上传:- [x]`
+-[x] `大文件分块上传`
 
 ## 安装
 
@@ -22,59 +22,53 @@ $ composer require wzx2002/upload
 
 ## 使用
 
-#### 阿里云OSS
-
 ```php
+    // oss配置
     $oss_config = [
         'accessKeyId' => '',
         'accessKeySecret' => '',
         'endpoint' => ''
     ];
     
-    Upload::getInstance()
-            ->setUploadInstance(OssUploadImpl::getInstance())
-            ->setConfig($oss_config)
-            ->upload($file);
-```
-
-#### 七牛云
-
-```php
+    // 七牛配置
     $qi_niu_config = [
         'accessKey' => '',
         'secretKey' => '',
         'domain' => ''
     ];
     
-    Upload::getInstance()
-            ->setUploadInstance(QiNiuUploadImpl::getInstance())
-            ->setConfig($qi_niu_config)
-            ->upload($file);
-```
-
-#### 腾讯云COS
-
-```php
+    // cos配置
     $cos_config = [
         'secretId' => '',
         'secretKey' => '',
-        'region' => ''
+        'region' => 'ap-shanghai'
     ];
     
-    Upload::getInstance()
-            ->setUploadInstance(CosUploadImpl::getInstance())
-            ->setConfig($cos_config)
-            ->upload($file);
-```
-
-#### 其他使用
-
-```php
-    $instance = Upload::getInstance()
-            ->setUploadInstance(CosUploadImpl::getInstance());
-    $instance->setConfig($cos_config);
-    $instance->setBucket($bucket);
+    // 获取实例
+    $instance = Upload::getInstance();
+    /*
+     * 设置驱动实现
+     * OssUploadImpl oss
+     * QiNiuUploadImpl 七牛
+     * CosUploadImpl cos
+     */
+    $instance->setUploadInstance(OssUploadImpl::getInstance());
+    // 配置
+    $instance->setConfig($oss_config);
+    // 普通/base64/多图上传
     $instance->upload($file);
+    // 分块上传
+    $instance->multiUploadFile($file);
+    
+    /*
+     * 返回 errCode 为0则成功
+     * [
+     *      'data' => [],
+     *      'msg' => '上传成功',
+     *      'errCode' => 0
+     * ]
+     */
+    
 ```
 
 ## License
