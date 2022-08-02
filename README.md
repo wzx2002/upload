@@ -55,8 +55,10 @@ $ composer require wzx2002/upload
     $instance->setUploadInstance(OssUploadImpl::getInstance());
     // 配置
     $instance->setConfig($oss_config);
-    // 普通/base64/多图上传
+    // 普通/base64上传
     $instance->upload($file);
+    // 普通/base64多图上传
+    $instance->uploadMany($files);
     // 分块上传
     $instance->multiUploadFile($file);
     
