@@ -35,7 +35,7 @@ class OssUploadTest extends TestCase
         $instance->setConfig($this->oss_config);
         $instance->setBucket('wzx2002');
         $res = $instance->multiUploadFile(
-            'D:\phpstudy_pro\WWW\test\upload\tests\OssUploadTest.php'
+            'https://img-blog.csdnimg.cn/20201211110345632.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NhbGVzdGluYQ==,size_16,color_FFFFFF,t_70'
         );
 
         print_r($res);

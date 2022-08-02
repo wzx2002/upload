@@ -33,7 +33,7 @@ class QiNiuUploadTest extends TestCase
         $instance->setConfig($this->qi_niu_config);
         $instance->setBucket('wzx2002');
         $res = $instance->multiUploadFile(
-            'D:\phpstudy_pro\WWW\test\upload\tests\OssUploadTest.php'
+            ''
         );
 
         print_r($res);

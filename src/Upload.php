@@ -127,6 +127,8 @@ final class  Upload
             $regex = "/^data:image\/\w{3,4};base64$/";
             if (preg_match($regex, $str)) {
                 $file = $this->Base64ToImage($file);
+            } else {
+                $file = $this->makeImage($file);
             }
             $filename = $this->makeFilename($file, $filename, $dir);
             $image = $this->uploadInstance->upload($file, $bucket, $filename);
@@ -156,13 +158,17 @@ final class  Upload
             'msg' => '上传成功',
             'errCode' => 0
         ];
-
-        $filename = $this->makeFilename($file, $filename, $dir);
         try {
+            $file = $this->makeImage($file);
+            $filename = $this->makeFilename($file, $filename, $dir);
             $result['data'] = $this->uploadInstance->multiuploadFile($file, $bucket, $filename);
         } catch (UploadException $e) {
             $result['msg'] = $e->getMessage();
             $result['errCode'] = -1;
+        } finally {
+            if (file_exists($file)) {
+                @unlink($file);
+            }
         }
 
         return $result;
@@ -212,9 +218,26 @@ final class  Upload
             if (file_put_contents($path, $base64_decode)) {
                 return $path;
             }
-            throw new UploadException("base64 转换失败");
         }
 
-        return $file;
+        throw new UploadException("base64 转换失败");
+    }
+
+    /**
+     * 生成图片
+     * @throws UploadException
+     */
+    public function makeImage(?string $file): string
+    {
+        $content = file_get_contents($file);
+        $file = getimagesize($file);
+        if (!empty($file)) {
+            $ext = substr($file['mime'], 6);
+            $path = md5(time() . date('Ymd')) . '.' . $ext;
+            if (file_put_contents($path, $content)) {
+                return $path;
+            }
+        }
+        throw new UploadException("image 生成失败");
     }
 }
