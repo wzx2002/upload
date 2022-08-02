@@ -122,21 +122,51 @@ final class  Upload
      */
     public function baseUpload(?string $file, string $dir, string $bucket, string $filename)
     {
-        $str = strstr($file, ',', true);
-        $regex = "/^data:image\/\w{3,4};base64$/";
-        if (preg_match($regex, $str)) {
-            $file = $this->Base64ToImage($file);
-        }
-        $filename = $this->makeFilename($file, $filename, $dir);
-        $image = $this->uploadInstance->upload($file, $bucket, $filename);
-
-        if (file_exists($file)) {
-            @unlink($file);
+        try {
+            $str = strstr($file, ',', true);
+            $regex = "/^data:image\/\w{3,4};base64$/";
+            if (preg_match($regex, $str)) {
+                $file = $this->Base64ToImage($file);
+            }
+            $filename = $this->makeFilename($file, $filename, $dir);
+            $image = $this->uploadInstance->upload($file, $bucket, $filename);
+        } catch (UploadException $e) {
+            throw new UploadException($e->getMessage());
+        } finally {
+            if (file_exists($file)) {
+                @unlink($file);
+            }
         }
 
         return $image;
     }
 
+    /**
+     * 分片上传
+     * @param string|null $file
+     * @param string $dir
+     * @param string $bucket
+     * @param string $filename
+     * @return array
+     */
+    public function multiUploadFile(?string $file, string $dir = '', string $bucket = '', string $filename = ''): array
+    {
+        $result = [
+            'data' => [],
+            'msg' => '上传成功',
+            'errCode' => 0
+        ];
+
+        $filename = $this->makeFilename($file, $filename, $dir);
+        try {
+            $result['data'] = $this->uploadInstance->multiuploadFile($file, $bucket, $filename);
+        } catch (UploadException $e) {
+            $result['msg'] = $e->getMessage();
+            $result['errCode'] = -1;
+        }
+
+        return $result;
+    }
 
     /**
      * 默认bucket设置

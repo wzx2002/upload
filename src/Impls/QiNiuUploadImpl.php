@@ -2,6 +2,7 @@
 
 namespace Wzx2002\Upload\Impls;
 
+use Qiniu\Config;
 use Qiniu\Http\Error;
 use Wzx2002\Upload\Base\BaseUpload;
 use Wzx2002\Upload\Exceptions\ConfigException;
@@ -35,15 +36,16 @@ class QiNiuUploadImpl extends BaseUpload implements UploadInterface
 
 
     /**
-     * @param string $filename 文件名
-     * @param string|null $file 文件路径
+     * 封装
      * @param string $bucket
+     * @param string $filename
+     * @param string|null $file
      * @return string
-     * @throws UploadException
      * @throws ConfigException
+     * @throws UploadException
      * @throws \Exception
      */
-    public function upload(?string $file, string $bucket, string $filename): string
+    public function extracted(string $bucket, string $filename, ?string $file, bool $isMulti = false): string
     {
         $instance = QiNiuUtil::getInstance();
         if (!$this->config['domain']) {
@@ -52,7 +54,15 @@ class QiNiuUploadImpl extends BaseUpload implements UploadInterface
         $instance->setConfig($this->config);
         $token = $instance->getToken($bucket ?: $this->bucket);
 
-        list($res, $error) = $instance->getUploadMgr()->putFile($token, $filename, $file);
+        if ($isMulti) {
+            list($res, $error) = $instance->getUploadMgr()->putFile($token, $filename, $file, null,
+                'application/octet-stream',
+                false,
+                null,
+                'v2');
+        } else {
+            list($res, $error) = $instance->getUploadMgr()->putFile($token, $filename, $file);
+        }
 
         if ($error instanceof \Exception) {
             throw new UploadException($error->getMessage());

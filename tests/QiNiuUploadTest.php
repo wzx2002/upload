@@ -25,4 +25,19 @@ class QiNiuUploadTest extends TestCase
 
         $this->assertEquals(0, $res['errCode']);
     }
+
+    public function testMultiUploadFile()
+    {
+        $instance = Upload::getInstance()
+            ->setUploadInstance(QiNiuUploadImpl::getInstance());
+        $instance->setConfig($this->qi_niu_config);
+        $instance->setBucket('wzx2002');
+        $res = $instance->multiUploadFile(
+            'D:\phpstudy_pro\WWW\test\upload\tests\OssUploadTest.php'
+        );
+
+        print_r($res);
+
+        $this->assertEquals(0, $res['errCode']);
+    }
 }

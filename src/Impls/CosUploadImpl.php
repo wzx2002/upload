@@ -33,6 +33,7 @@ class CosUploadImpl extends BaseUpload implements UploadInterface
 
 
     /**
+     * 文件上传
      * @param string|null $file
      * @param string $bucket
      * @param string $filename
@@ -41,14 +42,36 @@ class CosUploadImpl extends BaseUpload implements UploadInterface
      */
     public function upload(?string $file, string $bucket, string $filename): string
     {
+        return $this->extracted($bucket, $filename, $file);
+    }
+
+    /**
+     * 封装
+     * @param string $bucket
+     * @param string $filename
+     * @param string|null $file
+     * @return string
+     * @throws UploadException
+     * @throws \Exception
+     */
+    public function extracted(string $bucket, string $filename, ?string $file, bool $isMulti = false): string
+    {
         $instance = CosUtil::getInstance();
         $instance->setConfig($this->config);
         try {
-            return $instance->getCosClient()->putObject(array(
-                'Bucket' => $bucket ?: $this->bucket,
-                'Key' => $filename,
-                'Body' => $file
-            ))['Location'];
+            if($isMulti) {
+                return $instance->getCosClient()->Upload(
+                    $bucket ?: $this->bucket,
+                    $filename,
+                    $file
+                )['Location'];
+            }else{
+                return $instance->getCosClient()->putObject(array(
+                    'Bucket' => $bucket ?: $this->bucket,
+                    'Key' => $filename,
+                    'Body' => $file
+                ))['Location'];
+            }
         } catch (\Exception $e) {
             throw new UploadException($e->getMessage());
         }

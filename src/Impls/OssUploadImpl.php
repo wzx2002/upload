@@ -33,18 +33,24 @@ class OssUploadImpl extends BaseUpload implements UploadInterface
     }
 
     /**
-     * @param string $filename 文件名
-     * @param string|null $file 文件路径
+     * 封装
      * @param string $bucket
+     * @param string $filename
+     * @param string|null $file
      * @return string
      * @throws UploadException
+     * @throws \Exception
      */
-    public function upload(?string $file, string $bucket, string $filename): string
+    public function extracted(string $bucket, string $filename, ?string $file, bool $isMulti = false): string
     {
         $instance = OssUtil::getInstance();
         $instance->setConfig($this->config);
         try {
-            return $instance->getOssClient()->uploadFile($bucket ?: $this->bucket, $filename, $file)['oss-request-url'];
+            if($isMulti) {
+                return $instance->getOssClient()->multiuploadFile($bucket ?: $this->bucket, $filename, $file)['oss-request-url'];
+            }else{
+                return $instance->getOssClient()->uploadFile($bucket ?: $this->bucket, $filename, $file)['oss-request-url'];
+            }
         } catch (OssException $e) {
             throw new UploadException($e->getMessage());
         }
