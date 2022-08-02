@@ -53,7 +53,7 @@ $ composer require wzx2002/upload
     
     Upload::getInstance()
             ->setUploadInstance(CosUploadImpl::getInstance())
-            ->setConfig($qi_niu_config)
+            ->setConfig($cos_config)
             ->upload($file);
 ```
 
