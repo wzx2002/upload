@@ -73,6 +73,25 @@ $ composer require wzx2002/upload
     
 ```
 
+## 简易实例
+```php
+    $instance = Upload::getInstance();
+    $instance->setUploadInstance(OssUploadImpl::getInstance());
+    $instance->setBucket('wzx2002');
+    $instance->setConfig([
+        'accessKeyId' => '',
+        'accessKeySecret' => '',
+        'endpoint' => ''
+    ]);
+
+    $file = $request->file('file');
+    
+    // TODO 验证层 
+    
+    $res = $instance->upload($file);
+    return response()->json($res);
+``
+
 ## License
 
 MIT
