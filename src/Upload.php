@@ -117,10 +117,10 @@ final class  Upload
      * @param string $dir
      * @param string $bucket
      * @param string $filename
-     * @return mixed
+     * @return string
      * @throws UploadException
      */
-    public function baseUpload(?string $file, string $dir, string $bucket, string $filename)
+    public function baseUpload(?string $file, string $dir, string $bucket, string $filename): string
     {
         try {
             $str = strstr($file, ',', true);
@@ -199,7 +199,6 @@ final class  Upload
             $filename = date('YmdHis') . '-' . md5($file) . '-' . time() . $ext;
         }
 
-
         return empty($dir) ? $filename : $dir . '/' . $filename;
     }
 
@@ -238,6 +237,7 @@ final class  Upload
                 return $path;
             }
         }
+
         throw new UploadException("image 生成失败");
     }
 }
