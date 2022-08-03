@@ -90,7 +90,7 @@ $ composer require wzx2002/upload
     
     $res = $instance->upload($file);
     return response()->json($res);
-``
+```
 
 ## License
 
