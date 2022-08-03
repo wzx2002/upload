@@ -34,7 +34,6 @@ class QiNiuUploadImpl extends BaseUpload implements UploadInterface
         return self::$instance;
     }
 
-
     /**
      * 封装
      * @param string $bucket
