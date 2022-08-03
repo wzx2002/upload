@@ -7,9 +7,9 @@ use Wzx2002\Upload\Upload;
 class OssUploadTest extends TestCase
 {
     private array $oss_config = [
-        'accessKeyId' => 'LTAI5t7PuXPCfassXRsvYP6n',
-        'accessKeySecret' => 'FOgMgSmh89uHSvrembfwrAwaz72SV6',
-        'endpoint' => 'wzx2002.oss-cn-beijing.aliyuncs.com'
+        'accessKeyId' => '',
+        'accessKeySecret' => '',
+        'endpoint' => ''
     ];
 
 

@@ -2,8 +2,6 @@
 
 namespace Wzx2002\Upload\Base;
 
-use Wzx2002\Upload\Exceptions\UploadException;
-
 abstract class BaseUpload
 {
     public string $bucket;
@@ -28,7 +26,6 @@ abstract class BaseUpload
      * @param string|null $file 文件路径
      * @param string $bucket
      * @return string
-     * @throws UploadException
      */
     public function upload(?string $file, string $bucket, string $filename): string
     {
@@ -41,7 +38,6 @@ abstract class BaseUpload
      * @param string|null $file 文件路径
      * @param string $bucket
      * @return string
-     * @throws UploadException
      */
     public function multiUploadFile(?string $file, string $bucket, string $filename): string
     {
