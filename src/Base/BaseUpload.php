@@ -4,7 +4,7 @@ namespace Wzx2002\Upload\Base;
 
 use Wzx2002\Upload\Exceptions\UploadException;
 
-class BaseUpload
+abstract class BaseUpload
 {
     public string $bucket;
 
@@ -19,6 +19,8 @@ class BaseUpload
     {
         $this->config = $config;
     }
+
+    abstract function extracted(string $bucket, string $filename, ?string $file);
 
     /**
      * 文件上传

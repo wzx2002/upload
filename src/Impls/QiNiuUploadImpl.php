@@ -2,7 +2,6 @@
 
 namespace Wzx2002\Upload\Impls;
 
-use Qiniu\Config;
 use Qiniu\Http\Error;
 use Wzx2002\Upload\Base\BaseUpload;
 use Wzx2002\Upload\Exceptions\ConfigException;
