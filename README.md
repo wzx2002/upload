@@ -65,7 +65,7 @@ $ composer require wzx2002/upload
     /*
      * 返回 errCode 为0则成功
      * [
-     *      'data' => [],
+     *      'data' => 'xxxxx',
      *      'msg' => '上传成功',
      *      'errCode' => 0
      * ]
